@@ -17,9 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const studentList = document.querySelectorAll('li');
-const pageLength = 10;
-
-
+const perPage = 10;
 /***
    Create the `showPage` function to hide all of the items in the
    list except for the ten you want to show.
@@ -34,27 +32,52 @@ const pageLength = 10;
        that will be passed into the parens later when you call or
        "invoke" the function
 ***/
-const showPage = (list,page) => {
-  let startIndex = (list * page) - page; //page is pageLength
-  let endIndex = list * page;
+const showPage = (list,page) => { // list will be a list of student, page will be a number of page
+  let startIndex = ( page*perPage) - perPage;
+  let endIndex = page*perPage -1;
 
-  for(let i=0; i <= list.length; i++){
-    list[i].display = 'none';
+  for(let i=0; i < list.length; i++){
     if( i >= startIndex && i <= endIndex){
-      list[i].display = "";
+      list[i].style.display = "";
+    }else{
+      list[i].style.display="none";
     }
   }
 };
-
-
-
 /***
    Create the `appendPageLinks function` to generate, append, and add
    functionality to the pagination buttons.
 ***/
+const appendPageLinks = list =>{
 
+  const numberOfPages = list.length/perPage;
+  const divPage = document.querySelector('div.page');
 
+  const divPagination = document.createElement('div.pagination');
+  divPage.appendChild(divPagination);
 
+  const ul = document.createElement('ul');
+  divPagination.appendChild(ul);
 
+  for(let i=0; i <= numberOfPages; i++){
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.setAttribute('href','#');
+    a.textContent = i+1;
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+  const firstLi = ul.firstElementChild;
+  const a = document.querySelectorAll('li>a');
+  firstLi.firstElementChild.className = 'active';
+  a.addEventListener('click', (e)=>{
+    for(let i=0; i<= numberOfPages; i++){
+
+    }
+  });
+};
+
+showPage(studentList,1);
+appendPageLinks(studentList);
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
