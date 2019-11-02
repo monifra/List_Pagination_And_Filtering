@@ -50,7 +50,7 @@ const showPage = (list,page) => { // list will be a list of student, page will b
 ***/
 const appendPageLinks = list =>{
 
-  const numberOfPages = list.length/perPage;
+  const numberOfPages = Math.ceil(list.length/perPage);
   const divPage = document.querySelector('div.page');
 
   const divPagination = document.createElement('div.pagination');
@@ -63,18 +63,24 @@ const appendPageLinks = list =>{
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.setAttribute('href','#');
-    a.textContent = i+1;
+    a.textContent = i;
     li.appendChild(a);
     ul.appendChild(li);
-  }
-  const firstLi = ul.firstElementChild;
-  const a = document.querySelectorAll('li>a');
-  firstLi.firstElementChild.className = 'active';
-  a.addEventListener('click', (e)=>{
-    for(let i=0; i<= numberOfPages; i++){
-
     }
-  });
+
+    const firstLi = ul.firstElementChild;
+    const a = document.querySelectorAll('a');
+    firstLi.firstElementChild.className = 'active';
+
+    for(let i=0; i<= numberOfPages; i++){
+      a[i].addEventListener('click', (e)=>{
+        showPage(studentList,i);
+        for(let i=0; i<= numberOfPages; i++){
+          a[i].className = "";
+          e.target.className = 'active';
+        }
+      });
+    }
 };
 
 showPage(studentList,1);
