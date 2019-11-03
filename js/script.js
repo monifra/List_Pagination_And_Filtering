@@ -59,11 +59,11 @@ const appendPageLinks = list =>{
   const ul = document.createElement('ul');
   divPagination.appendChild(ul);
 
-  for(let i=0; i <= numberOfPages; i++){
+  for(let i=0; i < numberOfPages; i++){
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.setAttribute('href','#');
-    a.textContent = i;
+    a.textContent = i+1;
     li.appendChild(a);
     ul.appendChild(li);
     }
@@ -72,11 +72,11 @@ const appendPageLinks = list =>{
     const a = document.querySelectorAll('a');
     firstLi.firstElementChild.className = 'active';
 
-    for(let i=0; i<= numberOfPages; i++){
-      a[i].addEventListener('click', (e)=>{
-        showPage(studentList,i);
-        for(let i=0; i<= numberOfPages; i++){
-          a[i].className = "";
+    for(let j=0; j<= numberOfPages; j++){
+      a[j].addEventListener('click', (e)=>{
+        showPage(studentList,j);
+        for(let k=0; k<= numberOfPages; k++){
+          a[k].className = "";
           e.target.className = 'active';
         }
       });
