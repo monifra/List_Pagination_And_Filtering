@@ -53,7 +53,8 @@ const appendPageLinks = list =>{
   const numberOfPages = Math.ceil(list.length/perPage);
   const divPage = document.querySelector('div.page');
 
-  const divPagination = document.createElement('div.pagination');
+  const divPagination = document.createElement('div');
+  divPagination.className = "pagination";
   divPage.appendChild(divPagination);
 
   const ul = document.createElement('ul');
