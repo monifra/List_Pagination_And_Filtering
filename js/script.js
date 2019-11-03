@@ -72,9 +72,9 @@ const appendPageLinks = list =>{
     const a = document.querySelectorAll('a');
     firstLi.firstElementChild.className = 'active';
 
-    for(let j=0; j<= numberOfPages; j++){
-      a[j].addEventListener('click', (e)=>{
-        showPage(studentList,j);
+    for(let i=0; i<= numberOfPages; i++){
+      a[i].addEventListener('click', (e)=>{
+        showPage(studentList,i+1);
         for(let k=0; k<= numberOfPages; k++){
           a[k].className = "";
           e.target.className = 'active';
