@@ -121,7 +121,7 @@ Remove pagination function
 const removePageLinks = () =>{
   const divPage = document.querySelector('div.page'); //selecting parent
   const divPagination = document.querySelector('div.pagination'); //selecting child
-  node.removeChild(divPagination);//removing child from parent
+  divPage.removeChild(divPagination);//removing child from parent
 };
 
 /***
