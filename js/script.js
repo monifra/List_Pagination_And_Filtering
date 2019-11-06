@@ -54,18 +54,18 @@ const searchIt = (searchInput, list) =>{
       searchResult.push(list[i]);
       console.log(searchResult);
       showPage(searchResult,1);
+      // removePageLinks();
+      // appendPageLinks(searchResult);
+    }else if (searchResult.length === 0){
+      pNoResult.style.display = "";
+      showPage(list,1);
       removePageLinks();
-      appendPageLinks(searchResult);
+      appendPageLinks(studentList);
     }else{
       list[i].style.display="none";
     }
   }
-  if (searchResult.length === 0){
-    pNoResult.style.display = "";
-    showPage(list,1);
-    removePageLinks();
-    appendPageLinks(studentList);
-  }
+
 };
 
 /***
