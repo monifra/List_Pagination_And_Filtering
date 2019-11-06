@@ -56,9 +56,6 @@ const searchIt = (searchInput, list) =>{
       showPage(searchResult,1);
       removePageLinks();
       appendPageLinks(searchResult);
-    }else if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase()) === false){
-       pNoResult.style.display = "";
-       showPage(list,1);
     }else{
       list[i].style.display="none";
     }
