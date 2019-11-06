@@ -34,7 +34,7 @@ Creating the information that no matches were find by search and append it to th
 
 const divNoResult = document.createElement('div');
 const pNoResult = document.createElement('p');
-pNoResult.textContent = 'No students were find';
+pNoResult.textContent = 'No students were found';
 pNoResult.style.color = 'red';
 pNoResult.style.display = 'none';
 divStudentSearch.appendChild(pNoResult);
@@ -56,6 +56,9 @@ const searchIt = (searchInput, list) =>{
       showPage(searchResult,1);
       removePageLinks();
       appendPageLinks(searchResult);
+    }else if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase()) === false){
+       pNoResult.style.display = "";
+       showPage(list,1);
     }else{
       list[i].style.display="none";
     }
