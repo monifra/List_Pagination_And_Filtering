@@ -60,6 +60,12 @@ const searchIt = (searchInput, list) =>{
       list[i].style.display="none";
     }
   }
+  if (searchResult.length === 0){
+    pNoResult.style.display = "";
+    showPage(list,1);
+    removePageLinks();
+    appendPageLinks(studentList);
+  }
 };
 
 /***
