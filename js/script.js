@@ -32,7 +32,7 @@ headerStudentSearch.appendChild(divStudentSearch); //appending our new search ba
 Creating the information that no matches were find by search and append it to the page
 ***/
 
-const divNoResult = document.createElement('div');
+
 const pNoResult = document.createElement('p');
 pNoResult.textContent = 'No students were found';
 pNoResult.style.color = 'red';
@@ -53,19 +53,11 @@ const searchIt = (searchInput, list) =>{
       list[i].style.display="";
       searchResult.push(list[i]);
       console.log(searchResult);
-      showPage(searchResult,1);
-      // removePageLinks();
-      // appendPageLinks(searchResult);
-    }else if (searchResult.length === 0){
-      pNoResult.style.display = "";
-      showPage(list,1);
-      removePageLinks();
-      appendPageLinks(studentList);
     }else{
       list[i].style.display="none";
     }
   }
-
+  showPage(searchResult,1);
 };
 
 /***
@@ -74,7 +66,9 @@ showPage function hides all of the list items exept for those that you want to s
 const showPage = (list,page) => { //list will be a list of student, page will be a number of page
   let startIndex = ( page*perPage) - perPage; //the index number of first item that will be shown
   let endIndex = page*perPage -1;// the index number of last item that will be shown on a page
-
+  if(list.length === 0){
+    pNoResult.style.display = '';
+  }
   for(let i=0; i < list.length; i++){
     if( i >= startIndex && i <= endIndex){ //if an index is between startIndex and endIndex
       list[i].style.display = ""; // list items with a matching index will be shown
@@ -141,7 +135,7 @@ buttonStudentSearch.addEventListener('click', (e) => {
 });
 
 
-buttonStudentSearch.addEventListener('keyup', () => {
+inputStudentSearch.addEventListener('keyup', () => {
   searchIt(inputStudentSearch,studentList);
   console.log('Keyup event on the Search input is functional!'); //REMOVE
 });
