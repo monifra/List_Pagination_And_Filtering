@@ -112,7 +112,7 @@ const appendPageLinks = list =>{
     for(let i=0; i< numberOfPages; i++){
       a[i].addEventListener('click', (e)=>{ // adding a listener for click on a tags
         showPage(list,i+1); // when an 'a' tag is clicked showPage will choose a page with the right 'a' tag
-        for(let k=0; k<= numberOfPages; k++){
+        for(let k=0; k< numberOfPages; k++){
           a[k].className = ""; // leaving class name empty for all 'a' tags
           e.target.className = 'active'; // adding an 'active' class to an 'a' tag that was clicked
         }
