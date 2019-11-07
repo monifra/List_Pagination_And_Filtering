@@ -58,6 +58,10 @@ const searchIt = (searchInput, list) =>{
     }
   }
   showPage(searchResult,1);
+  removePageLinks();
+  for(let i = 0; i<searchResult.length; i++){
+  appendPageLinks(searchResult,i);
+  }
 };
 
 /***
