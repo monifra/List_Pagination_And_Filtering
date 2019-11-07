@@ -57,12 +57,9 @@ const searchIt = (searchInput, list) =>{
       list[i].style.display="none";
     }
   }
-
   showPage(searchResult,1);
   removePageLinks();
-  for(let i = 0; i<searchResult.length; i++){
-  appendPageLinks(searchResult,i);
-  }
+  appendPageLinks(searchResult);
 };
 
 /***
@@ -108,7 +105,6 @@ const appendPageLinks = list =>{
     const firstLi = ul.firstElementChild; // selecting a first li element as a first child of ul
     const a = document.querySelectorAll('a'); // sellecting all 'a' tags
     firstLi.firstElementChild.className = 'active'; // setting the class of first 'a' tag to 'active'
-
     for(let i=0; i< numberOfPages; i++){
       a[i].addEventListener('click', (e)=>{ // adding a listener for click on a tags
         showPage(list,i+1); // when an 'a' tag is clicked showPage will choose a page with the right 'a' tag
@@ -121,7 +117,7 @@ const appendPageLinks = list =>{
 };
 
 /***
-Remove pagination function
+Remove pagination function TO WYMAGA POPRAWY!!!!!!!
 ***/
 
 const removePageLinks = () =>{
@@ -130,6 +126,7 @@ const removePageLinks = () =>{
   divPage.removeChild(divPagination);//removing child from parent
 };
 
+
 /***
 Event listener for search button
 ***/
@@ -137,13 +134,11 @@ Event listener for search button
 buttonStudentSearch.addEventListener('click', (e) => {
   e.preventDefault();
   searchIt(inputStudentSearch,studentList);
-  // console.log('Submit button is functional!'); //REMOVE
 });
 
 
 inputStudentSearch.addEventListener('keyup', () => {
   searchIt(inputStudentSearch,studentList);
-  // console.log('Keyup event on the Search input is functional!'); //REMOVE
 });
 
 
