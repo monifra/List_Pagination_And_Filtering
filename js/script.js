@@ -52,11 +52,12 @@ const searchIt = (searchInput, list) =>{
     if(searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
       list[i].style.display="";
       searchResult.push(list[i]);
-      console.log(searchResult);
+
     }else{
       list[i].style.display="none";
     }
   }
+
   showPage(searchResult,1);
   removePageLinks();
   for(let i = 0; i<searchResult.length; i++){
@@ -70,6 +71,7 @@ showPage function hides all of the list items exept for those that you want to s
 const showPage = (list,page) => { //list will be a list of student, page will be a number of page
   let startIndex = ( page*perPage) - perPage; //the index number of first item that will be shown
   let endIndex = page*perPage -1;// the index number of last item that will be shown on a page
+
   if(list.length === 0){
     pNoResult.style.display = '';
   }
@@ -107,7 +109,7 @@ const appendPageLinks = list =>{
     const a = document.querySelectorAll('a'); // sellecting all 'a' tags
     firstLi.firstElementChild.className = 'active'; // setting the class of first 'a' tag to 'active'
 
-    for(let i=0; i<= numberOfPages; i++){
+    for(let i=0; i< numberOfPages; i++){
       a[i].addEventListener('click', (e)=>{ // adding a listener for click on a tags
         showPage(list,i+1); // when an 'a' tag is clicked showPage will choose a page with the right 'a' tag
         for(let k=0; k<= numberOfPages; k++){
@@ -135,13 +137,13 @@ Event listener for search button
 buttonStudentSearch.addEventListener('click', (e) => {
   e.preventDefault();
   searchIt(inputStudentSearch,studentList);
-  console.log('Submit button is functional!'); //REMOVE
+  // console.log('Submit button is functional!'); //REMOVE
 });
 
 
 inputStudentSearch.addEventListener('keyup', () => {
   searchIt(inputStudentSearch,studentList);
-  console.log('Keyup event on the Search input is functional!'); //REMOVE
+  // console.log('Keyup event on the Search input is functional!'); //REMOVE
 });
 
 
