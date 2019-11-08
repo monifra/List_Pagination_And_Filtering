@@ -9,7 +9,7 @@ It creates a navigation to let the user see the rest of the student by clicking 
 It has a search bar that allows to search the list of student,
 shows ones that match,
 adds pagination if there are more than ten results,
-ajust in real time when you change the words you search,
+adjust in real time when you change the words you search,
 and throws an error message when no match were found.
 
 I'm trying for the "Exceeds Expectations" grade and I want to get "Needs Work" when something doesn't work.
@@ -64,8 +64,9 @@ const searchIt = (searchInput, list) =>{ //function accepts two parameters inpu 
   const searchResult = []; //array to store search result
 
   for(let i =0; i< list.length; i++){
-    // if(searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
-    if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){ //if the search phrase is included in our list of students
+    const studentName = list[i].querySelector('h3'); // selects name of the student
+
+    if(studentName.textContent.toLowerCase().includes(searchInput.value.toLowerCase())){ //check if our student name is included in the value of input
       list[i].style.display=""; // we are displaying this students
       searchResult.push(list[i]); // and stores them in our array
     }else{
