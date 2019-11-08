@@ -2,7 +2,6 @@
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
-
 /***
 List Filter and Pagination project uses pagination technique to show maximum ten students at the page.
 It creates a navigation to let the user see the rest of the student by clicking on links inside the navigation.
