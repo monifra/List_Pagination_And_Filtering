@@ -99,7 +99,8 @@ const showPage = (list,page) => { //list will be a list of student, page will be
 };
 
 /***
-appendPageLinks function appends the pagination to the page. It accepts 
+appendPageLinks function appends the pagination to the page. It accepts one argument the list it will be used on.
+It seets how many student per page we want to have, divides student list into parts, creates list for each page, creates working pagination links.
 ***/
 
 const appendPageLinks = list =>{
@@ -122,7 +123,6 @@ const appendPageLinks = list =>{
     li.appendChild(a); // appending a as a child to li
     ul.appendChild(li); // appending li as a child to ul
   }
-
     const firstLi = ul.firstElementChild; // selecting a first li element as a first child of ul
     const a = document.querySelectorAll('a'); // sellecting all 'a' tags
     firstLi.firstElementChild.className = 'active'; // setting the class of first 'a' tag to 'active'
@@ -147,7 +147,6 @@ const removePageLinks = () =>{
   divPage.removeChild(divPagination);//removing child from parent
 };
 
-
 /***
 Event listener for search button
 ***/
@@ -157,11 +156,13 @@ buttonStudentSearch.addEventListener('click', (e) => {
   searchIt(inputStudentSearch,studentList);
 });
 
+/***
+Keyup for search input. It adds real time search experience
+***/
 
 inputStudentSearch.addEventListener('keyup', () => {
   searchIt(inputStudentSearch,studentList);
 });
 
-
 showPage(studentList,1); //running this function to show the first page of student list
-appendPageLinks(studentList);
+appendPageLinks(studentList); // appends the pagination links
