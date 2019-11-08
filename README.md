@@ -9,7 +9,7 @@ Techdegree Project 2 List_Pagination_And_Filtering
 
 Skills, techniques and process
 
-  Progressive enhancement
+  Progressive enhancement<br>
   Unobtrusive JavaScript
   Plain vanilla JavaScript
   Flexible solutions working despite the length of list
