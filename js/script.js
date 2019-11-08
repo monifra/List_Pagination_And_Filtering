@@ -29,33 +29,40 @@ divStudentSearch.appendChild(buttonStudentSearch);
 headerStudentSearch.appendChild(divStudentSearch); //appending our new search bar to the existing div
 
 /***
-Creating the information that no matches were find by search and append it to the page
+Creating error for no matches were found by search and append it to the page
 ***/
 
 
 const pNoResult = document.createElement('p');
+const divNoResult = document.createElement('div');
+const h2 = document.querySelector('h2');
 pNoResult.textContent = 'No students were found';
 pNoResult.style.color = 'red';
 pNoResult.style.display = 'none';
-divStudentSearch.appendChild(pNoResult);
+h2.appendChild(pNoResult);
 
 /***
-Creating the no result information
+Creating search function
 ***/
 
 
 
 const searchIt = (searchInput, list) =>{
   const searchResult = [];
-  for(let i =0; i< list.length; i++){
 
-    if(searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
+  for(let i =0; i< list.length; i++){
+    // if(searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
+    if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
       list[i].style.display="";
       searchResult.push(list[i]);
-
     }else{
       list[i].style.display="none";
     }
+  }
+  if(searchResult.length === 0 && searchInput.value.length > 0){
+    pNoResult.style.display = '';
+  } else{
+    pNoResult.style.display = 'none';
   }
   showPage(searchResult,1);
   removePageLinks();
@@ -68,10 +75,10 @@ showPage function hides all of the list items exept for those that you want to s
 const showPage = (list,page) => { //list will be a list of student, page will be a number of page
   let startIndex = ( page*perPage) - perPage; //the index number of first item that will be shown
   let endIndex = page*perPage -1;// the index number of last item that will be shown on a page
+  // if(list.length === 0){
+  //   pNoResult.style.display = '';
+  // }
 
-  if(list.length === 0){
-    pNoResult.style.display = '';
-  }
   for(let i=0; i < list.length; i++){
     if( i >= startIndex && i <= endIndex){ //if an index is between startIndex and endIndex
       list[i].style.display = ""; // list items with a matching index will be shown
