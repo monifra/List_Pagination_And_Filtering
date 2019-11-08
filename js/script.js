@@ -5,16 +5,31 @@ FSJS project 2 - List Filter and Pagination
 
 /***
 List Filter and Pagination project uses pagination technique to show maximum ten students at the page.
-It also creates a navigation to let the user see the rest of the student by clicking on links inside the navigation.
+It creates a navigation to let the user see the rest of the student by clicking on links inside the navigation.
+It has a search bar that allows to search the list of student,
+shows ones that match,
+adds pagination if there are more than ten results,
+ajust in real time when you change the words you search,
+and throws an error message when no match were found.
 
-I'm trying for the "Exceeds Expectations" grade.
+I'm trying for the "Exceeds Expectations" grade and I want to get "Needs Work" when something doesn't work.
+Extra credit solution:
+-search bar,
+-pagination in search results,
+-error message when there is no match,
+-keyup event to show changes in search in real time
+
+***/
+
+/***
+Global variables
 ***/
 
 const studentList = document.querySelectorAll('li'); //variable storing list of students
 const perPage = 10; //variable storing the number of items to show on page at one time
 
 /***
-Crating the search bar
+Search bar. Creating elements of the search bar and append them to the page.
 ***/
 
 const headerStudentSearch = document.getElementsByClassName('page-header')[0]; //selecting div with class page-header
@@ -29,56 +44,51 @@ divStudentSearch.appendChild(buttonStudentSearch);
 headerStudentSearch.appendChild(divStudentSearch); //appending our new search bar to the existing div
 
 /***
-Creating error for no matches were found by search and append it to the page
+Error message. When no matches were found by search, it appears on the page.
 ***/
-
 
 const pNoResult = document.createElement('p');
 const divNoResult = document.createElement('div');
 const h2 = document.querySelector('h2');
-pNoResult.textContent = 'No students were found';
-pNoResult.style.color = 'red';
-pNoResult.style.display = 'none';
-h2.appendChild(pNoResult);
+pNoResult.textContent = 'No students were found'; // setting text for errror message
+pNoResult.style.color = 'red'; //setting error message color  to red
+pNoResult.style.display = 'none'; // setting display to none so we can see error only when we want
+h2.appendChild(pNoResult); //appending error message to h2
 
 /***
-Creating search function
+searchIt function. It looks for matches between content of search input and our list of students. Then it stores the results
+in array, handles when there is no match by throwing error messsage and adds new pagination for our search results.
 ***/
 
-
-
-const searchIt = (searchInput, list) =>{
-  const searchResult = [];
+const searchIt = (searchInput, list) =>{ //function accepts two parameters inpu field and list
+  const searchResult = []; //array to store search result
 
   for(let i =0; i< list.length; i++){
     // if(searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
-    if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
-      list[i].style.display="";
-      searchResult.push(list[i]);
+    if(list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){ //if the search phrase is included in our list of students
+      list[i].style.display=""; // we are displaying this students
+      searchResult.push(list[i]); // and stores them in our array
     }else{
-      list[i].style.display="none";
+      list[i].style.display="none"; // when there is no match, this students we're hidding
     }
   }
-  if(searchResult.length === 0 && searchInput.value.length > 0){
-    pNoResult.style.display = '';
+  if(searchResult.length === 0 && searchInput.value.length > 0){  // if we haven't find match and the value of input field is longer than 0
+    pNoResult.style.display = ''; //displays error message
   } else{
-    pNoResult.style.display = 'none';
+    pNoResult.style.display = 'none'; // else hides error message
   }
-  showPage(searchResult,1);
-  removePageLinks();
-  appendPageLinks(searchResult);
+  showPage(searchResult,1); //shows the first page of the search results
+  removePageLinks(); // removes old pagination for list of students
+  appendPageLinks(searchResult); //adds new pagination for search result list
 };
 
 /***
 showPage function hides all of the list items exept for those that you want to show on the page.
 ***/
+
 const showPage = (list,page) => { //list will be a list of student, page will be a number of page
   let startIndex = ( page*perPage) - perPage; //the index number of first item that will be shown
   let endIndex = page*perPage -1;// the index number of last item that will be shown on a page
-  // if(list.length === 0){
-  //   pNoResult.style.display = '';
-  // }
-
   for(let i=0; i < list.length; i++){
     if( i >= startIndex && i <= endIndex){ //if an index is between startIndex and endIndex
       list[i].style.display = ""; // list items with a matching index will be shown
@@ -87,6 +97,10 @@ const showPage = (list,page) => { //list will be a list of student, page will be
     }
   }
 };
+
+/***
+appendPageLinks function appends the pagination to the page. It accepts 
+***/
 
 const appendPageLinks = list =>{
 
@@ -124,7 +138,7 @@ const appendPageLinks = list =>{
 };
 
 /***
-Remove pagination function TO WYMAGA POPRAWY!!!!!!!
+Remove pagination function.
 ***/
 
 const removePageLinks = () =>{
